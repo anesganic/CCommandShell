@@ -8,10 +8,12 @@ namespace C_CommandShell
     internal class CommandParser
     {
         private readonly List<Type> commands;
+        private readonly CommandFactory commandFactory;
 
         public CommandParser()
         {
-            commands = CommandFactory.GetCommands();
+            commandFactory = new CommandFactory();
+            commands = commandFactory.LoadCommands();
         }
 
         public Type GetCommand(string input)
