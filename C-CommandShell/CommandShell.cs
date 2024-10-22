@@ -4,13 +4,13 @@
     {
         private CommandParser commandParser;
         private CommandInvoker commandInvoker;
-        private ShellWorkspace shellWorkspace;
+        private ShellEnvironment shellEnvironment;
 
         public CommandShell()
         {
             commandParser = new CommandParser();
             commandInvoker = new CommandInvoker();
-            shellWorkspace = new ShellWorkspace();
+            shellEnvironment = new ShellEnvironment();
         }
 
         public void Run()
@@ -25,7 +25,7 @@
 
         public void ShowInterface()
         {
-            Console.Write(shellWorkspace.GetFullPath() + " > ");
+            Console.Write(shellEnvironment.GetFullPath() + " > ");
         }
 
         public void Exit()
@@ -40,7 +40,7 @@
 
             if (type != null)
             {
-                commandInvoker.ExecuteCommand(type, parameters, shellWorkspace);
+                commandInvoker.ExecuteCommand(type, parameters, shellEnvironment);
             }
             else
             {

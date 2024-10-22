@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CCommandShell
 {
-    internal class ShellWorkspace
+    internal class ShellEnvironment
     {
         public string GetFullPath()
         {
