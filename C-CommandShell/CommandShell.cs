@@ -1,4 +1,4 @@
-﻿namespace DemoliShell
+﻿namespace C_CommandShell
 {
     internal class CommandShell
     {
