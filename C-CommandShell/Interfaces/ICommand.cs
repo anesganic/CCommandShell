@@ -8,8 +8,8 @@ namespace C_CommandShell.Interfaces
 {
 	internal interface ICommand
 	{
-		public List<String> parameters { get; set; }
+		public List<String> Parameters { get; set; }
 
-		protected void Execute();
+		public void Execute();
 	}
 }
