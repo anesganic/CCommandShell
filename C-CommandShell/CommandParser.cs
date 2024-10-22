@@ -1,9 +1,9 @@
-﻿using C_CommandShell;
+﻿using CCommandShell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace C_CommandShell
+namespace CCommandShell
 {
     internal class CommandParser
     {
@@ -13,7 +13,7 @@ namespace C_CommandShell
         public CommandParser()
         {
             commandFactory = new CommandFactory();
-            commands = commandFactory.LoadCommands();
+            commands = CommandFactory.commands;
         }
 
         public Type GetCommand(string input)

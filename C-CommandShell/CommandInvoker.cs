@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using C_CommandShell.Interfaces;
+using CCommandShell.Interfaces;
 
-namespace C_CommandShell
+namespace CCommandShell
 {
     internal class CommandInvoker
     {

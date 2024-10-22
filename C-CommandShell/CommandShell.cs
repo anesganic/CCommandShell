@@ -1,4 +1,4 @@
-﻿namespace C_CommandShell
+﻿namespace CCommandShell
 {
     internal class CommandShell
     {
@@ -36,7 +36,7 @@
         public void ProcessInput(string userInput)
         {
             Type type = commandParser.GetCommand(userInput); // The correct GetCommand method should be used here.
-            List<string> parameters = commandParser.GetParameter(userInput);
+            List<string> parameters = commandParser.GetParameters(userInput);
 
             if (type != null)
             {
@@ -50,36 +50,4 @@
         }
     }
 
-    // Ensure there is no duplicate definition for these classes in the same namespace
-    internal class CommandParser
-    {
-        public Type GetCommand(string input)
-        {
-            // Logic to determine and return the command type based on the input
-            return null;
-        }
-
-        public List<string> GetParameter(string input)
-        {
-            // Logic to extract parameters from the input command
-            return new List<string>();
-        }
-    }
-
-    internal class CommandInvoker
-    {
-        public void ExecuteCommand(Type commandType, List<string> parameters, ShellWorkspace workspace)
-        {
-            // Logic to execute the command based on type and parameters
-        }
-    }
-
-    internal class ShellWorkspace
-    {
-        public string GetFullPath()
-        {
-            // Logic to return the current path or workspace information
-            return "C:\\";
-        }
-    }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C_CommandShell.Commands
+namespace CCommandShell.Commands
 {
     internal class ClsCommand
     {
