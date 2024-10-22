@@ -4,32 +4,36 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using C_CommandShell.Interfaces;
 
 namespace C_CommandShell
 {
     internal class CommandFactory
     {
-        public List<Type> commands;
-        public ICommand CreateCommand (Type type)
+        public static List<Type> commands = LoadCommands();
+
+        public static ICommand? CreateCommand (Type type)
         {
-			//Search and instance (ChatGpt)
-			var commandType = commands.FirstOrDefault(t => t == type); return commandType != null ?
-            Activator.CreateInstance(commandType) as ICommand : null;
-		}
+            //Search and instance (ChatGpt)
+            return commands.FirstOrDefault(t => t == type) != null
+            ? Activator.CreateInstance(type) as ICommand
+            : null;
+        }
 
 
-        public List<Type> GetCommands()
+        public static List<Type> GetCommands()
         {
             return commands;
         }
 
-        public List<Type> LoadCommands()
+        public static List<Type> LoadCommands()
         {
             // Find types from ICommand 
+
             return AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly  => assembly.GetTypes())
-                .Where(type => typeof (ICommand).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract) 
+                .Where(a => !a.IsDynamic) // Nur geladene Assemblies durchsuchen, die nicht dynamisch sind
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type => typeof(ICommand).IsAssignableFrom(type) && !type.IsInterface)
                 .ToList();
         }
         
