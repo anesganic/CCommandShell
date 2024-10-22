@@ -8,4 +8,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Filesystem\" />
+    <Folder Include="Persistency\" />
+  </ItemGroup>
+
 </Project>
