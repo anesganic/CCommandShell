@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using CCommandShell.Interfaces;
+﻿using CCommandShell.Interfaces;
 
 namespace CCommandShell.Commands
 {
     public class SetColorCommand : ICommand
     {
-        public List<string> Parameters { get; set; } = new List<string>();
-        public ShellEnvironment ShellEnvironment { get; set; }
+		public CommandContent Content { get; set; } = new CommandContent();
 
-        public void Execute()
+		public void Execute()
         {
             // Check for no parameters
-            if (Parameters.Count == 0)
+            if (Content.Parameters.Count == 0)
             {
                 Console.WriteLine("Please specify a color for the text or background.");
                 return;
             }
 
-            foreach (var param in Parameters)
+            foreach (var param in Content.Parameters)
             {
                 var parts = param.ToLower().Split(':');
                 if (parts.Length != 2)

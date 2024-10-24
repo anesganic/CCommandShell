@@ -7,7 +7,7 @@ using CCommandShell.Interfaces;
 
 namespace CCommandShell
 {
-    internal class CommandInvoker
+    public class CommandInvoker
     {
         public void ExecuteCommand(Type type, List<string> parameters, ShellEnvironment shellEnvironment)
         {

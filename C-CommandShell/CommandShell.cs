@@ -1,6 +1,6 @@
 ﻿namespace CCommandShell
 {
-    internal class CommandShell
+    public class CommandShell
     {
         private CommandParser commandParser;
         private CommandInvoker commandInvoker;

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CCommandShell
 {
-    internal class CommandParser
+    public class CommandParser
     {
         private readonly List<Type> commands;
         private readonly CommandFactory commandFactory;
@@ -13,7 +13,7 @@ namespace CCommandShell
         public CommandParser()
         {
             commandFactory = new CommandFactory();
-            commands = CommandFactory.commands;
+            commands = CommandFactory.GetCommands();
         }
 
         public Type GetCommand(string input)
