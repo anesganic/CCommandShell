@@ -9,10 +9,11 @@ namespace CCommandShell
 {
     internal class CommandInvoker
     {
-        public void ExecuteCommand(Type type, List<string> parameters)
+        public void ExecuteCommand(Type type, List<string> parameters, ShellEnvironment shellEnvironment)
         {
             ICommand command = CommandFactory.CreateCommand(type);
             command.Parameters = parameters;
+            command.ShellEnvironment = shellEnvironment;
             command.Execute();
         }
     }
