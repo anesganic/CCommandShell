@@ -8,6 +8,7 @@ namespace CCommandShell
 {
     internal class ShellEnvironment
     {
+
         public string GetFullPath()
         {
             // Logic to return the current path or workspace information
