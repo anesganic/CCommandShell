@@ -4,6 +4,7 @@ namespace CCommandShell
 {
     public class ShellEnvironment
     {
+
         public string GetFullPath()
         {
 

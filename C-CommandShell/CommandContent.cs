@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CCommandShell;
 
-namespace C_CommandShell
+namespace CCommandShell
 {
     internal class CommandContent
     {
