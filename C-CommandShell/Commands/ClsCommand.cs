@@ -6,13 +6,12 @@ namespace CCommandShell.Commands
 {
     public class ClsCommand : ICommand
     {
-        public List<string> Parameters { get; set; } = new List<string>();
+		public CommandContent Content { get; set; } = new CommandContent();
 
-        public ShellEnvironment ShellEnvironment { get; set; }
-
-        public void Execute()
+		public void Execute()
         {
             Console.Clear();
         }
-    }
+
+	}
 }

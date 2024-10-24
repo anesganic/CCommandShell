@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CCommandShell.Interfaces;
+﻿using CCommandShell.Interfaces;
 
 namespace CCommandShell.Commands
 {
-    internal class CdCommand
+    public class CdCommand : ICommand
     {
-        public List<String> Parameters { get; set; }
-        public CommandContent Content { get; set; }
-        public ShellEnvironment Environment { get; set; }
-        public CdCommand()
-        {
-            Content = new CommandContent();
-            Parameters = new List<String>();
-            Environment = new ShellEnvironment();
-        }
+        public CommandContent Content { get; set; } = new CommandContent();
 
         public void Execute()
         {

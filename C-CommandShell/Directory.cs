@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace CCommandShell
 {
-    internal class Directory
+    public class Directory : SystemItem
     {
-        public String Name;
-        public double Size;
-        public DateTime CreateDate;
-        public Directory DirBefore;
-
-        public Directory() { }
-        public Directory(Directory DirBefore, String Name, double Size, DateTime CreateDate)
+        public List<SystemItem> Items {  get; set; } = new List<SystemItem>();
+        public Directory(Directory DirBefore) 
         {
             this.DirBefore = DirBefore;
-            this.Name = Name;
-            this.Size = Size;
-            this.CreateDate = CreateDate;
         }
+
+        public Directory(List<SystemItem> items, string name, DateTime craeateDate) 
+        {
+            this.Items = items; 
+            this.Name = name;
+            this.CreateDate = craeateDate;
+        }
+
     }
 }

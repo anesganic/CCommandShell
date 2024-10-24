@@ -8,7 +8,7 @@ using CCommandShell;
 
 namespace CCommandShell
 {
-    internal class CommandContent
+    public class CommandContent
     {
         public List<string> Parameters { get; set; }
         public String CurrentDir { get; set; }
