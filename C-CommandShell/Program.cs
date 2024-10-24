@@ -1,2 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using CCommandShell;
+
+namespace DemoliShell
+{
+    class Programm
+    {
+        private CommandShell commandShell;
+        static void Main(string[] args)
+        {
+            CommandShell shell = new CommandShell();
+            shell.Run();
+        }
+    }
+}
