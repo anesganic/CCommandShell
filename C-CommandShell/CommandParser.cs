@@ -18,10 +18,11 @@ namespace CCommandShell
 
         public Type GetCommand(string input)
         {
-            string commandInUserInput = input.Split(' ').FirstOrDefault()?.ToLower() + "command";
+            string commandInUserInput = input.Split(' ').FirstOrDefault()?.ToLower();
 
-            return commands.FirstOrDefault(type => type.Name.Equals(commandInUserInput, StringComparison.OrdinalIgnoreCase));
+            return commands.FirstOrDefault(type => type.Name.Equals(commandInUserInput + "Command", StringComparison.OrdinalIgnoreCase));
         }
+
 
         public List<string> GetParameters(string input)
         {
