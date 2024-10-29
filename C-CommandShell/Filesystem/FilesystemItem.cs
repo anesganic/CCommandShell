@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C_CommandShell.Filesystem
+namespace CCommandShell.Filesystem
 {
-    internal class FilesystemItem
+    public class FilesystemItem
     {
+        public string Name;
+        public double Size;
+        public DateTime CreateDate;
+        public Directory DirBefore;
+
     }
 }
