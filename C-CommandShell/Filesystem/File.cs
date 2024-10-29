@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C_CommandShell.Filesystem
+namespace CCommandShell.Filesystem
 {
-    internal class File
+	public class File
     {
     }
 }
