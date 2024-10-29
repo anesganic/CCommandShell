@@ -7,13 +7,13 @@ using CCommandShell.Interfaces;
 
 namespace CCommandShell
 {
-    internal class CommandInvoker
+    public class CommandInvoker
     {
         public void ExecuteCommand(Type type, List<string> parameters, ShellEnvironment shellEnvironment)
         {
             ICommand command = CommandFactory.CreateCommand(type);
-            command.Parameters = parameters;
-            command.ShellEnvironment = shellEnvironment;
+            command.Content.Parameters = parameters;
+            command.Content.ShellEnvironment = shellEnvironment;
             command.Execute();
         }
     }

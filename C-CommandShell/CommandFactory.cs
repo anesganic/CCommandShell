@@ -8,7 +8,7 @@ using CCommandShell.Interfaces;
 
 namespace CCommandShell
 {
-    internal class CommandFactory
+    public class CommandFactory
     {
         public static List<Type> commands = LoadCommands();
 

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace CCommandShell.Filesystem
 {
-    public class Drive
     {
         public Directory RootDirectory { get; set; }
         public string Name { get; set; }
