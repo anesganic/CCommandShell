@@ -12,7 +12,6 @@ namespace CCommandShell
     {
         public List<string> Parameters { get; set; }
         public String CurrentDir { get; set; }
-        public ShellEnvironment Environment { get; set; }
 		public ShellEnvironment ShellEnvironment { get; internal set; }
 
 		public CommandContent() 
