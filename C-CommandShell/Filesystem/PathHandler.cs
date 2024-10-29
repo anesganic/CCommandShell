@@ -20,10 +20,10 @@ namespace CCommandShell.Filesystem
             bool haveDirBefore = true;
             do
             {
-                if (CurrendDir.DirBefore != null)
+                if (CurrendDir.DirectoryBefore != null)
                 {
                     path = "\\" + CurrendDir.Name + path;
-                    currendDir = currendDir.DirBefore;
+                    currendDir = currendDir.DirectoryBefore;
                 }
                 else
                 {
@@ -47,9 +47,9 @@ namespace CCommandShell.Filesystem
             {
                 if (part == "..")
                 {
-                    if (dir.DirBefore != null)
+                    if (dir.DirectoryBefore != null)
                     {
-                        dir = dir.DirBefore;
+                        dir = dir.DirectoryBefore;
                     }
                 }
                 else

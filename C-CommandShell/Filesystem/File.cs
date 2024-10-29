@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace CCommandShell.Filesystem
 {
-	public class File
-    {
-    }
+	public class File : FilesystemItem
+	{
+		public string FileContent { get; set; }
+
+		public File() { }
+		public File(Directory DirBefore)
+		{
+			this.DirectoryBefore = DirBefore;
+		}
+
+	}
 }

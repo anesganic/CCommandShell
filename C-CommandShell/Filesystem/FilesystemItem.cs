@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CCommandShell.Filesystem
 {
-    public class FilesystemItem
+    public abstract class FilesystemItem
     {
         public string Name;
         public double Size;
         public DateTime CreateDate;
-        public Directory DirBefore;
+        public Directory DirectoryBefore;
 
     }
 }

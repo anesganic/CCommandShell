@@ -10,9 +10,11 @@ namespace CCommandShell.Filesystem
     public class Directory : FilesystemItem
     {
         public List<FilesystemItem> Items { get; set; } = new List<FilesystemItem>();
-        public Directory(Directory DirBefore)
+
+		public Directory() { }
+		public Directory(Directory DirBefore)
         {
-            this.DirBefore = DirBefore;
+            this.DirectoryBefore = DirBefore;
         }
 
         public Directory(List<FilesystemItem> items, string name, DateTime craeateDate)
