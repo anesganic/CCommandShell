@@ -4,9 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C_CommandShell.Filesystem
+namespace CCommandShell.Filesystem
 {
-    internal class File
-    {
-    }
+	public class File : FilesystemItem
+	{
+		public string FileContent { get; set; }
+
+		public File() { }
+		public File(Directory DirBefore)
+		{
+			this.DirectoryBefore = DirBefore;
+		}
+
+	}
 }
