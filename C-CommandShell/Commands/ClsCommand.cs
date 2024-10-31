@@ -6,7 +6,7 @@ namespace CCommandShell.Commands
 {
     public class ClsCommand : ICommand
     {
-		public CommandContent Content { get; set; } = new CommandContent();
+		public CommandContent CommandContent { get; set; } = new CommandContent();
 
 		public void Execute()
         {

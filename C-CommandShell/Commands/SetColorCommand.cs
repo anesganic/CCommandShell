@@ -4,18 +4,17 @@ namespace CCommandShell.Commands
 {
     public class SetColorCommand : ICommand
     {
-		public CommandContent Content { get; set; } = new CommandContent();
+		public CommandContent CommandContent { get; set; } = new CommandContent();
 
 		public void Execute()
         {
-            // Check for no parameters
-            if (Content.Parameters.Count == 0)
+            if (CommandContent.Parameters.Count == 0)
             {
                 Console.WriteLine("Please specify a color for the text or background.");
                 return;
             }
 
-            foreach (var param in Content.Parameters)
+            foreach (var param in CommandContent.Parameters)
             {
                 var parts = param.ToLower().Split(':');
                 if (parts.Length != 2)
@@ -39,7 +38,7 @@ namespace CCommandShell.Commands
                         break;
                     case "background":
                         Console.BackgroundColor = (ConsoleColor)color;
-                        Console.Clear(); // Clear to apply background change
+                        Console.Clear();
                         Console.WriteLine($"Background color changed to {color}.");
                         break;
                     default:

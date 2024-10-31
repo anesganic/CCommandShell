@@ -1,28 +1,31 @@
-﻿using System;
+﻿using CCommandShell.Filesystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CCommandShell.Filesystem;
+using System.Xml.Linq;
 
 namespace CCommandShell.Filesystem
 {
     public class Directory : FilesystemItem
     {
-        public List<FilesystemItem> Items { get; set; } = new List<FilesystemItem>();
+        public List<FilesystemItem> FilesystemItems { get; set; } = new List<FilesystemItem> { };
 
-		public Directory() { }
-		public Directory(Directory DirBefore)
+        public Directory() { }
+        public Directory(Directory parentDirectory)
         {
-            this.DirectoryBefore = DirBefore;
+            ParentDirectory = parentDirectory;
         }
 
-        public Directory(List<FilesystemItem> items, string name, DateTime craeateDate)
+        public Directory(List<FilesystemItem> fileSystemItems, string name, DateTime createdOn)
         {
-            Items = items;
+            FilesystemItems = fileSystemItems;
             Name = name;
-            CreateDate = craeateDate;
+            CreateDate = createdOn;
         }
+
+        public Directory Clone() { return (Directory)this.MemberwiseClone(); }
 
     }
 }
