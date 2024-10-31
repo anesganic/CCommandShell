@@ -12,8 +12,8 @@ namespace CCommandShell
         public void ExecuteCommand(Type type, List<string> parameters, ShellEnvironment shellEnvironment)
         {
             ICommand command = CommandFactory.CreateCommand(type);
-            command.Content.Parameters = parameters;
-            command.Content.ShellEnvironment = shellEnvironment;
+            command.CommandContent.Parameters = parameters;
+            command.CommandContent.ShellEnvironment = shellEnvironment;
             command.Execute();
         }
     }

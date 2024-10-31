@@ -14,7 +14,6 @@ namespace CCommandShell
 
         public static ICommand? CreateCommand (Type type)
         {
-            //Search and instance (ChatGpt)
             return commands.FirstOrDefault(t => t == type) != null
             ? Activator.CreateInstance(type) as ICommand
             : null;
@@ -28,10 +27,9 @@ namespace CCommandShell
 
         public static List<Type> LoadCommands()
         {
-            // Find types from ICommand 
 
             return AppDomain.CurrentDomain.GetAssemblies()
-                .Where(a => !a.IsDynamic) // Nur geladene Assemblies durchsuchen, die nicht dynamisch sind
+                .Where(a => !a.IsDynamic)
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => typeof(ICommand).IsAssignableFrom(type) && !type.IsInterface)
                 .ToList();

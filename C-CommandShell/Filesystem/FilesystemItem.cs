@@ -8,10 +8,10 @@ namespace CCommandShell.Filesystem
 {
     public abstract class FilesystemItem
     {
-        public string Name;
-        public double Size;
-        public DateTime CreateDate;
-        public Directory DirectoryBefore;
+        public string Name { get; set; }
+        public double Size { get; set; }
+        public DateTime CreateDate { get; set; }
+        public Directory ParentDirectory { get; set; }
 
     }
 }

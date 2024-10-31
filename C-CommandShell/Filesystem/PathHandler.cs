@@ -1,71 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using CCommandShell.Filesystem;
 
 namespace CCommandShell.Filesystem
 {
     public class PathHandler
     {
-        public string GetPath(Directory CurrendDir)
-        {
-            string path = "";
-            Directory currendDir = CurrendDir;
-            bool haveDirBefore = true;
-            do
-            {
-                if (CurrendDir.DirectoryBefore != null)
-                {
-                    path = "\\" + CurrendDir.Name + path;
-                    currendDir = currendDir.DirectoryBefore;
-                }
-                else
-                {
-                    path = CurrendDir.Name + path;
-                    haveDirBefore = false;
-                }
-            }
-            while (haveDirBefore == true);
+        private readonly CommandOutputWriter outputWriter = new();
 
-            return path;
+        public string GetFullPath(Directory currentDirectory, Drive drive)
+        {
+            var fullPath = new List<string>();
+            var loopDir = currentDirectory;
+
+            while (loopDir != null)
+            {
+                fullPath.Insert(0, loopDir.Name);
+                loopDir = loopDir.ParentDirectory;
+            }
+
+            return $"{drive.Label}:{string.Join("\\", fullPath)}";
         }
 
-        public Directory GetDirectory(string Path, Directory CurrentDir)
+        public Directory GetDirectory(string path, Directory currentDir, Drive drive)
         {
-            Directory dir = CurrentDir;
-            bool exist = false;
+            var resultDir = currentDir;
+            var pattern = @"\w{1}:";
+            var regex = new Regex(pattern);
+            var splitted = path.Split('\\');
 
-            string[] parts = Path.Split('\\');
-
-            foreach (string part in parts)
+            foreach (var word in splitted)
             {
-                if (part == "..")
+                if (word.Equals("..", StringComparison.Ordinal))
                 {
-                    if (dir.DirectoryBefore != null)
-                    {
-                        dir = dir.DirectoryBefore;
-                    }
+                    resultDir = resultDir.ParentDirectory ?? resultDir;
+                }
+                else if (regex.IsMatch(word))
+                {
+                    resultDir = drive.RootDirectory;
                 }
                 else
                 {
-                    foreach (FilesystemItem item in dir.Items)
-                    {
-                        if (item.Name == part && item is Directory)
-                        {
-                            dir = (Directory)item;
-                        }
-                    }
+                    resultDir = FindDirectoryInCurrent(resultDir, word) ?? resultDir;
                 }
             }
 
+            return resultDir;
+        }
 
-            return dir;
+        private Directory FindDirectoryInCurrent(Directory currentDir, string name)
+        {
+            foreach (var item in currentDir.FilesystemItems)
+            {
+                if (item.Name.Equals(name, StringComparison.Ordinal) && item is Directory dir)
+                {
+                    return dir;
+                }
+            }
+
+            outputWriter.WriteLine("Your Path is invalid!");
+            return null;
         }
     }
 }

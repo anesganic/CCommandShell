@@ -1,14 +1,20 @@
-﻿using System;
+﻿using CCommandShell.Filesystem;
+using CCommandShell.Persistency;
 
 namespace CCommandShell
 {
     public class ShellEnvironment
     {
+        public Drive Drive { get; }
+        public Filesystem.Directory CurrentDirectory { get; set; }
+        public PathHandler PathHandler { get; } = new PathHandler();
 
-        public string GetFullPath()
+        public ShellEnvironment()
         {
-
-            return "C:\\";
+            Drive = PersistencyService.Load();
+            CurrentDirectory = Drive.RootDirectory;
         }
+
+        public string GetFullPath() => PathHandler.GetFullPath(CurrentDirectory, Drive);
     }
 }
