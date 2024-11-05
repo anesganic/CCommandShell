@@ -33,7 +33,7 @@ namespace CCommandShell.Persistency
                 DriveInfo winDrive = drives[0];
                 Filesystem.Directory rootDir = new Filesystem.Directory("", DateTime.Now, new List<FilesystemItem>());
 
-                return new Drive(rootDir, "Windows", "C", "DEMOLI", winDrive.DriveType.ToString());
+                return new Drive(rootDir, "Windows", "C", "CShell", winDrive.DriveType.ToString());
             }
         }
         public static void Save(Drive driver)

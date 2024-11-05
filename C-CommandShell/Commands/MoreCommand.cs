@@ -59,8 +59,6 @@ namespace CCommandShell.Commands
 
                 }
 
-
-
             }
             else { CommandContent.OutputWriter.WriteLine("Parameters are null or empty."); }
         }

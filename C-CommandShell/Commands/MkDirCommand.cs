@@ -38,20 +38,20 @@ namespace CCommandShell.Commands
             };
 
             AddFilesystemItem(newDirectory);
-            CommandContent.OutputWriter.WriteLine($"Verzeichnis '{directoryName}' erstellt.");
+            CommandContent.OutputWriter.WriteLine($"Directory '{directoryName}' created.");
         }
 
         public void MakeDirectory(string directoryName)
         {
             if (string.IsNullOrWhiteSpace(directoryName))
             {
-                CommandContent.OutputWriter.WriteLine("Verzeichnisname darf nicht leer sein.");
+                CommandContent.OutputWriter.WriteLine("Directory name must not be empty.");
                 return;
             }
 
             if (DirectoryExists(directoryName))
             {
-                CommandContent.OutputWriter.WriteLine("Das Verzeichnis existiert bereits.");
+                CommandContent.OutputWriter.WriteLine("The directory already exists.");
                 return;
             }
 
@@ -63,7 +63,7 @@ namespace CCommandShell.Commands
             if (CommandContent.Parameters.Count > 0)
                 MakeDirectory(CommandContent.Parameters[0]);
             else
-                CommandContent.OutputWriter.WriteLine("Kein Verzeichnisname angegeben.");
+                CommandContent.OutputWriter.WriteLine("No directory name given.");
         }
     }
 }
