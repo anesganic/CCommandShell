@@ -1,4 +1,6 @@
-﻿namespace CCommandShell
+﻿using CCommandShell.Persistency;
+
+namespace CCommandShell
 {
     public class CommandShell
     {
@@ -20,6 +22,7 @@
                 ShowInterface();
                 string userInput = Console.ReadLine();
                 ProcessInput(userInput);
+                PersistencyService.Save(shellEnvironment.Drive);
             } while (true);
         }
 
