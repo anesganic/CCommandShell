@@ -27,25 +27,64 @@ namespace CCommandShell.Commands
 		{
 			if (CommandContent.Parameters != null && CommandContent.Parameters.Count > 0)
 			{
-				// Get path of source directory
-				string sourcePath = CommandContent.Parameters[0];
-				Filesystem.Directory sourceDir = CommandContent.ShellEnvironment.PathHandler.GetDirectory(sourcePath, CommandContent.ShellEnvironment.CurrentDirectory, CommandContent.ShellEnvironment.Drive);
-
-				// Get path of destination directory
-				string destinationPath = CommandContent.Parameters[1];
-				Filesystem.Directory destinationDir = CommandContent.ShellEnvironment.PathHandler.GetDirectory(destinationPath, CommandContent.ShellEnvironment.CurrentDirectory, CommandContent.ShellEnvironment.Drive);
-				Filesystem.Directory destinationDirClone = destinationDir.Clone();
-
-				while (destinationDirClone.ParentDirectory != null)
+				var sourceDir = GetDir(CommandContent.Parameters[0]);
+				var destDir = GetDir(CommandContent.Parameters[1]);
+					
+				if (IsSubfolder(destDir, sourceDir))
 				{
-					if (destinationDirClone.ParentDirectory == sourceDir)
-					{
-						return;
-					}
-					// Move to the next parent directory
-					destinationDirClone = destinationDirClone.ParentDirectory;
+					CommandContent.OutputWriter.WriteLine("Destination is Subfolder of Source.");
+					return;
 				}
+
+				if (IsSubfolder(sourceDir, destDir))
+				{
+					CommandContent.OutputWriter.WriteLine("This Directory is affected we navigate you to the Root");
+					CommandContent.ShellEnvironment.CurrentDirectory = CommandContent.ShellEnvironment.Drive.RootDirectory;
+				}
+
+				MoveDirectory(sourceDir, destDir);
 			}
+		}
+
+		private Filesystem.Directory GetDir(string path)
+		{
+			return CommandContent.ShellEnvironment.PathHandler.GetDirectory(path, CommandContent.ShellEnvironment.CurrentDirectory, CommandContent.ShellEnvironment.Drive);
+		}
+
+		private bool IsSubfolder(Filesystem.Directory destdir, Filesystem.Directory sourcedir)
+		{
+			var dir = destdir;
+			while (dir.ParentDirectory != null)
+			{
+				if (dir.ParentDirectory == sourcedir) { return true; }
+				dir = dir.ParentDirectory;
+			}
+			return false;
+		}
+
+		private bool IsAffectedByMove(Filesystem.Directory sourcedir, Filesystem.Directory destdir)
+		{
+			var currentDir = CommandContent.ShellEnvironment.CurrentDirectory;
+			if (sourcedir == currentDir || destdir == currentDir || destdir == sourcedir) return false;
+
+			var fileName = sourcedir.Name;
+			var dir = currentDir;
+			while (dir.ParentDirectory != null)
+			{
+				if (dir.ParentDirectory.Name == fileName) { return true; }
+				dir = dir.ParentDirectory;
+			}
+
+			sourcedir.ParentDirectory?.FilesystemItems.Remove(sourcedir);
+			return false;
+			
+		}
+
+		private void MoveDirectory(Filesystem.Directory sourceDir, Filesystem.Directory destDir)
+		{
+			sourceDir.ParentDirectory?.FilesystemItems.Remove(sourceDir);
+			sourceDir.ParentDirectory = destDir;
+			destDir.FilesystemItems.Add(sourceDir);
 		}
 
 	}
