@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace CCommandShell.Filesystem
 {
-    internal class File : FilesystemItem
+    public class File : FilesystemItem
     {
+
         public string FileContent { get; set; }
         public string Extension { get; set; }
 
