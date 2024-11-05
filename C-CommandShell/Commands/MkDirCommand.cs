@@ -1,12 +1,15 @@
 ﻿using System;
 using CCommandShell.Filesystem;
 using CCommandShell.Interfaces;
+using CCommandShell.Persistency;
 
 namespace CCommandShell.Commands
 {
     public class MkDirCommand : ICommand
     {
         public CommandContent CommandContent { get; set; }
+
+        public PersistencyService PersistencyService { get; set; }
 
         public MkDirCommand() : this(new CommandOutputWriter()) { }
         public MkDirCommand(ICommandOutputWriter commandOutputWriter)

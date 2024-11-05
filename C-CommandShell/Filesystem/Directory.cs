@@ -1,7 +1,9 @@
 ﻿using CCommandShell.Filesystem;
+using CCommandShell.Persistency;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -10,7 +12,10 @@ namespace CCommandShell.Filesystem
 {
     public class Directory : FilesystemItem
     {
+        PersistencyService persistencyService { get; set; } = new PersistencyService();
+        public PersistencyService PersistencyService { get; set; }
         public List<FilesystemItem> FilesystemItems { get; set; } = new List<FilesystemItem> { };
+
 
         public Directory() { }
         public Directory(Directory parentDirectory)
@@ -18,11 +23,11 @@ namespace CCommandShell.Filesystem
             ParentDirectory = parentDirectory;
         }
 
-        public Directory(List<FilesystemItem> fileSystemItems, string name, DateTime createdOn)
+        public Directory(string name, DateTime createdOn, List<FilesystemItem> filesystemItems)
         {
-            FilesystemItems = fileSystemItems;
             Name = name;
             CreateDate = createdOn;
+            FilesystemItems = filesystemItems;
         }
 
         public Directory Clone() { return (Directory)this.MemberwiseClone(); }

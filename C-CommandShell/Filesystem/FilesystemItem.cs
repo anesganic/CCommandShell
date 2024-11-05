@@ -8,6 +8,7 @@ namespace CCommandShell.Filesystem
 {
     public abstract class FilesystemItem
     {
+        public Guid guid { get; set; }
         public string Name { get; set; }
         public double Size { get; set; }
         public DateTime CreateDate { get; set; }
