@@ -1,18 +1,14 @@
 ﻿using CCommandShell.Filesystem;
-
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
+
+
+
 
 namespace CCommandShell.Persistency
 {
-    internal class PersistencyService
+    public class PersistencyService
     {
-        public const string Filename = "Filesystem.json";
+        public static string Filename = "Filesystem.json";
         public static JsonSerializerSettings settings = new JsonSerializerSettings()
         {
             Formatting = Formatting.Indented,
@@ -35,12 +31,10 @@ namespace CCommandShell.Persistency
             {
                 DriveInfo[] drives = DriveInfo.GetDrives();
                 DriveInfo winDrive = drives[0];
-                Filesystem.Directory rootDir = new Filesystem.Directory(new List<FilesystemItem>(), "", DateTime.Now);
+                Filesystem.Directory rootDir = new Filesystem.Directory("", DateTime.Now, new List<FilesystemItem>());
 
-                return new Drive(rootDir, "Windows", "C", "users", winDrive.DriveType.ToString());
+                return new Drive(rootDir, "Windows", "C", "DEMOLI", winDrive.DriveType.ToString());
             }
-
-            return null;
         }
         public static void Save(Drive driver)
         {
