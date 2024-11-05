@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CCommandShell
 {
-    internal class CommandOutputWriter : ICommandOutputWriter
+    public class CommandOutputWriter : ICommandOutputWriter
     {
         public ConsoleColor ForegroundColor
         {
