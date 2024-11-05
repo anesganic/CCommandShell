@@ -4,7 +4,7 @@ using Moq;
 using CCommandShell.Interfaces;
 using CCommandShell.Commands;
 
-namespace CCommandShell.Tests
+namespace CCommandShellTest
 {
     public class VerCommandTests
     {
