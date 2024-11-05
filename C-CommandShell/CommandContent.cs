@@ -13,7 +13,8 @@ namespace CCommandShell
     {
         public List<string> Parameters { get; set; }
         public ICommandOutputWriter OutputWriter { get; set; }
-     	public ShellEnvironment ShellEnvironment { get;  set; }
+    		public ShellEnvironment ShellEnvironment { get; set; }
+
 
       
 		public CommandContent() 

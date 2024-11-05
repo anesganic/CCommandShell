@@ -12,6 +12,8 @@ namespace CCommandShell.Filesystem
 
         public string FileContent { get; set; }
         public string Extension { get; set; }
+
+
         public File() { }
         public File(Directory parentDirectory)
         {
