@@ -6,9 +6,10 @@ using CCommandShell.Commands;
 
 namespace CCommandShellTest
 {
+    [TestClass]
     public class VerCommandTests
     {
-        [Fact]
+        [TestMethod]
         public void Execute_ShouldWriteOSVersionToOutput()
         {
             // Arrange
