@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CCommandShell.Commands;
 using CCommandShell.Interfaces;
 
 namespace CCommandShell
@@ -12,12 +13,21 @@ namespace CCommandShell
     {
         public static List<Type> commands = LoadCommands();
 
-        public static ICommand? CreateCommand (Type type)
+        public static ICommand? CreateCommand(Type type)
         {
-            return commands.FirstOrDefault(t => t == type) != null
-            ? Activator.CreateInstance(type) as ICommand
-            : null;
+
+            var command = commands.FirstOrDefault(t => t == type) != null
+                ? Activator.CreateInstance(type) as ICommand
+                : null;
+
+            if (command == null)
+            {
+                Console.WriteLine($"Error: Could not create command for type {type.Name}");
+            }
+
+            return command;
         }
+
 
 
         public static List<Type> GetCommands()
