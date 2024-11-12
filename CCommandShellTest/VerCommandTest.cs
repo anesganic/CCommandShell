@@ -10,21 +10,22 @@ namespace CCommandShellTest
     public class VerCommandTests
     {
         [TestMethod]
-        public void Execute_ShouldWriteOSVersionToOutput()
+        public void GivenVerCommand_WhenExecuted_ShouldWriteOSVersionToOutput()
         {
-            // Arrange
+            // Given
             var mockOutputWriter = new Mock<ICommandOutputWriter>();
             var verCommand = new VerCommand(mockOutputWriter.Object);
 
-            // Act
+            // When
             verCommand.Execute();
 
-            // Assert
+            // Then
             var osVersion = Environment.OSVersion.Version.ToString();
             var expectedOutput = $"OS Version: {osVersion}";
 
             mockOutputWriter.Verify(m => m.WriteLine(It.Is<string>(s => s.Contains(expectedOutput))),
                 Times.Once, "Expected OS version output was not written.");
         }
+
     }
 }
