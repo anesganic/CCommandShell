@@ -19,7 +19,6 @@ namespace CCommandShell.Filesystem
         {
             ParentDirectory = parentDirectory;
         }
-        public File Clone() { return (File)this.MemberwiseClone(); }
-
+        public File Clone() => (File)this.MemberwiseClone();
     }
 }
