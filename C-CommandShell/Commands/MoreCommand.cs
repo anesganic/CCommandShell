@@ -22,19 +22,21 @@ namespace CCommandShell.Commands
             {
                 string fileName = CommandContent.Parameters[0];
                 Filesystem.File file = null;
+                bool fileFound = false;
 
                 foreach (FilesystemItem filesystemItem in CommandContent.ShellEnvironment.CurrentDirectory.FilesystemItems)
                 {
                     if (filesystemItem.Name == fileName && filesystemItem is Filesystem.File)
                     {
                         file = (Filesystem.File)filesystemItem;
+                        fileFound = true;
                         break;
                     }
-                    else
-                    {
-                        Console.WriteLine("File can't be found.");
-                    }
 
+                }
+                if (fileFound == false) 
+                {
+                    Console.WriteLine("File can't be found.");
                 }
 
                 if (file != null)
